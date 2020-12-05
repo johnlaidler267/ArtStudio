@@ -1,0 +1,92 @@
+body {
+    background-color: #7FFFD4;
+    font-family: 'Fredoka One', serif;
+}
+
+
+/* Main title */
+
+.heading1_main {
+    color: #487475;
+    font-size: 100px;
+    left: 150px;
+    margin: 15px;
+    width: 300px;
+    position: absolute;
+    top: 230px;
+    text-decoration: none;
+}
+
+.heading1_sub {
+    color: white;
+    text-shadow: 4px 4px #487475;
+    font-size: 200px;
+    left: 300px;
+    margin: 15px;
+    width: 300px;
+    position: absolute;
+    top: 300px;
+}
+
+
+/* Sub-title */
+
+.heading2 {
+    position: absolute;
+    top: 55%;
+    left: 23%;
+    width: 24em;
+    margin: 0 auto;
+    text-shadow: 2px 2px white;
+    color: #487475;
+    border-right: 2px solid rgba(255, 255, 255, .75);
+    font-size: 215%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* Sub-title animation (typewriter) */
+
+.typewriter_animation {
+    animation: typewriter 4s steps(44) 1s 1 normal both, blinkTextCursor 500ms steps(44) infinite normal;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 24em;
+    }
+}
+
+@keyframes blinkTextCursor {
+    from {
+        border-right-color: rgba(255, 255, 255, .75);
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+
+
+/* Start button */
+
+#start_button {
+    font-family: 'Fredoka One', serif;
+    margin: 0;
+    position: absolute;
+    top: 55%;
+    left: 60%;
+    font-size: 100px;
+    color: white;
+    box-shadow: 5px 6px black;
+    background-color: #487475;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#start_button:hover {
+    background-color: rgb(41, 40, 40);
+}

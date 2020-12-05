@@ -1,0 +1,120 @@
+window.addEventListener("load", () => {
+    const whiteboard = document.querySelector("#whiteboard");
+    const ctx = whiteboard.getContext("2d");
+
+    whiteboard.width = window.innerWidth * 0.59;
+    whiteboard.height = window.innerHeight * 0.8;
+
+    //whiteboard drawing functionality
+    let drawing = false;
+    ctx.lineWidth = 5;
+
+    function getXY(canvas, event) {
+        var rect = canvas.getBoundingClientRect(); // absolute position of canvas
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        }
+    }
+
+    function startPos(e) {
+        drawing = true;
+        draw(e);
+    }
+
+    function finishedPos() {
+        drawing = false;
+        ctx.beginPath();
+    }
+
+    function draw(e) {
+        if (!drawing) return;
+        ctx.lineCap = "round";
+        let position = getXY(whiteboard, e)
+        ctx.lineTo(position.x, position.y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(position.x, position.y);
+    }
+
+    function changeColor(color) {
+        ctx.strokeStyle = color.target.innerHTML;
+    }
+
+    function changeSize(size) {
+        console.log(size.target.innerHTML);
+        switch (size.target.innerHTML) {
+            case "Small":
+                ctx.lineWidth = 5;
+                break;
+            case "Medium":
+                ctx.lineWidth = 10;
+                break;
+            case "Large":
+                ctx.lineWidth = 15;
+                break;
+            case "Giant":
+                ctx.lineWidth = 20;
+                break;
+        }
+    }
+
+    //buttons that control the whiteboard
+    whiteboard.addEventListener("mousedown", startPos);
+    whiteboard.addEventListener("mouseup", finishedPos);
+    whiteboard.addEventListener("mousemove", draw);
+
+    const red = document.getElementById("red");
+    const orange = document.getElementById("orange");
+    const yellow = document.getElementById("yellow");
+    const green = document.getElementById("green");
+    const blue = document.getElementById("blue");
+    const purple = document.getElementById("purple");
+    const black = document.getElementById("black");
+    const colors = [red, orange, yellow, green, blue, purple, black];
+    colors.forEach(x => addEventListener("click", changeColor, false));
+
+    const small = document.getElementById("small");
+    const medium = document.getElementById("medium");
+    const large = document.getElementById("large");
+    const giant = document.getElementById("very_large");
+    const sizes = [small, medium, large, giant];
+    sizes.forEach(x => addEventListener("click", changeSize, false));
+
+    const eraser = document.getElementById("eraser").addEventListener("click", () => ctx.strokeStyle = "White", false);
+    const clearAll = document.getElementById("clear_all").addEventListener("click", () => ctx.clearRect(0, 0, whiteboard.width, whiteboard.height), false);
+
+    //importing the painting from the Smithsonian API + displaying it on webpage
+    function randomNumber(n) {
+        return Math.floor(Math.random() * n);
+    }
+    async function getPainting() {
+        async function findImage() {
+            let paintingArray = 'https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&q=paintings'
+            let responsep = await fetch(paintingArray);
+            let datap = await responsep.json();
+            let objectIDs = datap.objectIDs;
+
+            let temp = api_url;
+            temp = temp + "/" + objectIDs[randomNumber(objectIDs.length)].toString();
+            let response = await fetch(temp);
+
+            let data = await response.json();
+            if (data.message === "ObjectID Not Found") { return findImage(); }
+
+            let image = data.primaryImage;
+            if (image == "" || image === undefined) { return findImage(); } else { return image; }
+        }
+        let src = await findImage();
+        return src;
+    }
+    async function generatePainting() {
+        let src = await getPainting();
+        document.getElementById("art").src = src;
+    }
+    const api_url = 'https://collectionapi.metmuseum.org/public/collection/v1/objects';
+    generatePainting();
+
+    //Randomize artwork
+    const randomizer = document.getElementById("randomizer").addEventListener("click", generatePainting, false);
+});

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Studio_formatting.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
+    <title>New ArtStudio</title>
+</head>
+
+<body>
+    <canvas id="whiteboard"></canvas>
+    <script src="Studio.js"></script>
+
+    <!--Webpage Headings-->
+    <h1 class="artwork" style="color:white;">Random Artwork</h1>
+    <h1 class="artwork" id="canvas" style="color:white;">Canvas</h1>
+    <h2 class="artwork" id="subheading" style="color:black;">Try to recreate it to the best of your ability</h2>
+
+    <!--Canvas dropdown menus-->
+    <div class="dropdown" style="top:-845px;left:176px">
+        <button class="dropdown_button">🎨</button>
+        <div class="dropdown_content">
+            <a href="#" style="color:red" id="red">Red</a>
+            <a href="#" style="color:orange" id="orange">Orange</a>
+            <a href="#" style="color:yellow" id="yellow">Yellow</a>
+            <a href="#" style="color:green" id="green">Green</a>
+            <a href="#" style="color:blue" id="blue">Blue</a>
+            <a href="#" style="color:purple" id="purple">Purple</a>
+            <a href="#" style="color:black" id="black">Black</a>
+        </div>
+    </div>
+
+    <div class="dropdown" style="top:-845px;left:-35px">
+        <button class="dropdown_button">🖌️Size</button>
+        <div class="dropdown_content">
+            <a href="#" style="font-size: 15px;" id="small">Small</a>
+            <a href="#" style="font-size: 20px;" id="medium">Medium</a>
+            <a href="#" style="font-size: 25px;" id="large">Large</a>
+            <a href="#" style="font-size: 30px;" id="very_large">Giant</a>
+        </div>
+    </div>
+
+    <!--Other canvas buttons-->
+    <div>
+        <button class="dropdown_button" id="eraser">Erase</button>
+    </div>
+
+    <div>
+        <button id="clear_all"> ❌Clear All</button>
+    </div>
+
+    <!--Art-->
+    <div class="box">
+        <img id="art" src="">
+    </div>
+
+    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/game-die_1f3b2.png" id="randomizer">
+
+</body>
+
+</html>
