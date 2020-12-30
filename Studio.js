@@ -161,7 +161,6 @@ window.addEventListener("load", () => {
         //var tweet = encodeURIComponent($("meta[property='og:description']").attr("content"));
 
         var facebook = document.getElementById("facebook");
-        var twitter = document.getElementById("twitter");
 
         facebook.addEventListener("click", function () {
             //var img = new Image();
@@ -172,13 +171,5 @@ window.addEventListener("load", () => {
             console.log(url);
             socialWindow(url);
         });
-
-        /*
-        twitter.addEventListener("click", function () {
-            url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
-            socialWindow(url);
-            console.log("test1")
-        });
-        */
     }
 });
