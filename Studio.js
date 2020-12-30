@@ -124,7 +124,8 @@ window.addEventListener("load", () => {
 
         var img = new Image();
         img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
-        printWhiteboard(img.src);
+        console.log(img);
+        //printWhiteboard(img.src);
 
         function printWhiteboard(imageSRC) {
             var newWindow = window.open(); //opens up a new window
@@ -163,12 +164,15 @@ window.addEventListener("load", () => {
         var facebook = document.getElementById("facebook");
 
         facebook.addEventListener("click", function () {
-            var img = new Image();
-            img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
-            document.querySelector('meta[property="og:image"]').setAttribute("content", img.src);
-            console.log(document.querySelector('meta[property="og:image"]'))
+            var old_tag = document.querySelector('meta[property="og:image"]');
+            old_tag.remove();
+
+            var new_tag = document.createElement('meta');
+            new_tag.setAttribute("property", 'og:image');
+            new_tag.content = whiteboard.toDataURL();
+            document.getElementsByTagName('head')[0].appendChild(new_tag);
+
             url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-            console.log(url);
             socialWindow(url);
         });
     }
