@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
     ctx.lineWidth = 5;
 
     function getXY(canvas, event) {
-        var rect = canvas.getBoundingClientRect(); // absolute position of canvas
+        var rect = canvas.getBoundingClientRect(); // absolute position of mouse
         return {
             x: event.clientX - rect.left,
             y: event.clientY - rect.top
@@ -42,7 +42,6 @@ window.addEventListener("load", () => {
     }
 
     function changeSize(size) {
-        console.log(size.target.innerHTML);
         switch (size.target.innerHTML) {
             case "Small":
                 ctx.lineWidth = 5;
@@ -117,4 +116,70 @@ window.addEventListener("load", () => {
 
     //Randomize artwork
     const randomizer = document.getElementById("randomizer").addEventListener("click", generatePainting, false);
+
+    //Print
+    const print = document.getElementById("print");
+
+    print.addEventListener("click", function () {
+
+        var img = new Image();
+        img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
+        printWhiteboard(img.src);
+
+        function printWhiteboard(imageSRC) {
+            var newWindow = window.open(); //opens up a new window
+            newWindow.document.open(); //opens the html page of the window
+            newWindow.document.write(addHTML(imageSRC)); //adds html stuff to html page
+            newWindow.document.close(); //Closes the html page 
+        }
+
+        function addHTML(imageSRC) {
+            return "<html><head><scri" + "pt>function step1(){\n" +
+                "setTimeout('step2()', 10);}\n" +
+                "function step2(){window.print();window.close()}\n" +
+                "</scri" + "pt></head><body onload='step1()'>\n" +
+                "<img src='" + imageSRC + "' /></body></html>";
+        }
+    });
+
+    //Social media links
+    setShareLinks();
+
+    function socialWindow(url) {
+        var left_position = (screen.width - 570) / 2;
+        var top_position = (screen.height - 570) / 2;
+        var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top_position + ",left=" + left_position;
+        // Setting 'params' to an empty string will launch
+        // content in a new tab or window rather than a pop-up.
+        // params = "";
+        window.open(url, "NewWindow", params); //opens a new window w/ specified url.
+    }
+
+
+    function setShareLinks() {
+        var pageUrl = encodeURIComponent('https://johnlaidler267.github.io/ArtStudio/Studio.html');
+        console.log(document.URL)
+        //var tweet = encodeURIComponent($("meta[property='og:description']").attr("content"));
+
+        var facebook = document.getElementById("facebook");
+        var twitter = document.getElementById("twitter");
+
+        var img = new Image();
+        img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
+        document.querySelector('meta[name="og:image"]').setAttribute("content", img.src);
+
+        facebook.addEventListener("click", function () {
+            url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+            console.log(url);
+            socialWindow(url);
+        });
+
+        /*
+        twitter.addEventListener("click", function () {
+            url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
+            socialWindow(url);
+            console.log("test1")
+        });
+        */
+    }
 });
