@@ -158,17 +158,16 @@ window.addEventListener("load", () => {
 
     function setShareLinks() {
         var pageUrl = encodeURIComponent('https://johnlaidler267.github.io/ArtStudio/Studio.html');
-        console.log(document.URL)
         //var tweet = encodeURIComponent($("meta[property='og:description']").attr("content"));
 
         var facebook = document.getElementById("facebook");
         var twitter = document.getElementById("twitter");
 
-        var img = new Image();
-        img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
-        document.querySelector('meta[name="og:image"]').setAttribute("content", img.src);
-
         facebook.addEventListener("click", function () {
+            //var img = new Image();
+            //img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
+            //document.querySelector('meta[property="og:image"]').setAttribute("content", img.src);
+            //console.log(document.querySelector('meta[property="og:image"]'))
             url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
             console.log(url);
             socialWindow(url);
