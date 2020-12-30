@@ -13,6 +13,7 @@ body {
 
 button {
     font-family: 'Fredoka One';
+    border-radius: 10px
 }
 
 #whiteboard {
@@ -46,12 +47,12 @@ button {
 }
 
 #clear_all {
+    position: absolute;
     background-color: white;
     color: red;
     padding: 16px;
     font-size: 30px;
     border: none;
-    position: absolute;
     top: 152px;
     left: 390px;
     outline: none;
@@ -156,4 +157,46 @@ button {
     size: 170px;
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
+}
+
+/* Print button */
+#print {
+    font-size: 50px;
+    border: 5px solid black;
+    width: 200px;
+    position: absolute;
+    top: 950px;
+    left: 60px;
+}
+
+#print:hover {
+    background-color: rgb(41, 40, 40);
+}
+
+/* Social media buttons */
+#facebook {
+    height: 7%;
+    position: absolute;
+    top: 956px;
+    left: 275px;
+}
+
+#twitter {
+    height: 10%;
+    position: absolute;
+    top: 945px;
+    left: 345px;
+}
+
+img.darken {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+img.darken:hover {
+    -webkit-filter: brightness(60%);
+   filter: brightness(60%);
 }
