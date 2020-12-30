@@ -163,10 +163,10 @@ window.addEventListener("load", () => {
         var facebook = document.getElementById("facebook");
 
         facebook.addEventListener("click", function () {
-            //var img = new Image();
-            //img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
-            //document.querySelector('meta[property="og:image"]').setAttribute("content", img.src);
-            //console.log(document.querySelector('meta[property="og:image"]'))
+            var img = new Image();
+            img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
+            document.querySelector('meta[property="og:image"]').setAttribute("content", img.src);
+            console.log(document.querySelector('meta[property="og:image"]'))
             url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
             console.log(url);
             socialWindow(url);
