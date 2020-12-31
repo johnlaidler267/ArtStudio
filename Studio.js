@@ -124,8 +124,7 @@ window.addEventListener("load", () => {
 
         var img = new Image();
         img.src = whiteboard.toDataURL(); //This method returns a data URI containing a representation of the image on canvas
-        console.log(img);
-        //printWhiteboard(img.src);
+        printWhiteboard(img.src);
 
         function printWhiteboard(imageSRC) {
             var newWindow = window.open(); //opens up a new window
