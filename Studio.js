@@ -164,14 +164,6 @@ window.addEventListener("load", () => {
         var facebook = document.getElementById("facebook");
 
         facebook.addEventListener("click", function () {
-            var old_tag = document.querySelector('meta[property="og:image"]');
-            old_tag.remove();
-
-            var new_tag = document.createElement('meta');
-            new_tag.setAttribute("property", 'og:image');
-            new_tag.content = whiteboard.toDataURL();
-            document.getElementsByTagName('head')[0].appendChild(new_tag);
-
             url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
             socialWindow(url);
         });
